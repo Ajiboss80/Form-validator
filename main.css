@@ -83,6 +83,9 @@ p{
         width: 83vw;
         padding: 30px 10px;
     }
+    .content input{
+        width: 80%;
+    }
     .sign-up{
         font-size: clamp(14px, 1.5vw, 16px  );
         padding: 8px 10px;
