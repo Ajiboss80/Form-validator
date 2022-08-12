@@ -82,7 +82,7 @@ p{
 @media (max-width: 425px) {
     .content{
         width: 83vw;
-        padding: 2vh 10px;
+        padding: 27px 10px;
     }
     .content input{
         width: 80%;
