@@ -18,8 +18,7 @@ signUp.addEventListener("click", () => {
 });
 
 //CHECKING FOR VALIDITY OF ALL INPUTS
-function checkAll(e) {
-    e.preventDefault();
+function checkAll() {
     if (firstName.value == "") {
         firstName.style.border = '1px solid red';
         lastName.style.border = 'none';
