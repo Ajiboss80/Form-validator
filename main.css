@@ -81,10 +81,13 @@ p{
 @media (max-width: 425px) {
     .content{
         width: 83vw;
-        padding: 30px 10px;
+        padding: 2vh 10px;
     }
     .content input{
         width: 80%;
+    }
+    .content div{
+        margin: 3vh 20px;
     }
     .sign-up{
         font-size: clamp(14px, 1.5vw, 16px  );
