@@ -1,5 +1,6 @@
-// PICKING TAGS FROM THE HTML PAGE
-const container = document.querySelector('.container');
+// SELECTING THE HTML TAGS
+const container = document.querySelector(".container");
+const contentContainer = document.querySelector(".content-container");
 const firstName = document.querySelector(".first-name");
 const  firstNameError = document.querySelector(".error-1");
 const  lastName = document.querySelector(".last-name");
@@ -12,52 +13,133 @@ const  confirmPassword = document.querySelector(".confirm-password");
 const  confirmPasswordError = document.querySelector(".error-5");
 const  signUp = document.querySelector(".sign-up");
 
-// EVENT LISTENER TO CARRY OUT THE CHECKING FUNCTION ON CLICK OF THE SIGN UP BUTTON
+// PERFORM FUNCTION ON CLICK OF SIGN UP BUTTON
 signUp.addEventListener("click", () => {
     checkAll();
 });
 
+//MOVE TO NEXT ITEM ON PRESS OF ENTER KEY
+firstName.addEventListener('keyup', (a) =>{
+    if (a.keyCode === 13) {
+        signUp.click();
+        lastName.focus();
+    }
+});
+lastName.addEventListener('keyup', (b) =>{
+    if (b.keyCode === 13) {
+        signUp.click();
+        email.focus();
+    }
+});
+email.addEventListener('keyup', (c) =>{
+    if (c.keyCode === 13) {
+        signUp.click();
+        password.focus();
+    }
+});
+password.addEventListener('keyup', (d) =>{
+    if (d.keyCode === 13) {
+        signUp.click();
+        confirmPassword.focus();
+    }
+});
+confirmPassword.addEventListener('keyup', (e) =>{
+    if (e.keyCode === 13) {
+        signUp.click();
+    }
+});
+
 //CHECKING FOR VALIDITY OF ALL INPUTS
 function checkAll() {
-    if (firstName.value == "") {
-        firstName.style.border = '1px solid red';
-        lastName.style.border = 'none';
+
+    // FIRST NAME INPUT CONDITIONS
+    if (firstName.value == '' ) {
+        firstName.classList.add('error');
+        firstName.classList.remove('success');
         firstNameError.innerText = "First Name is unavailabe.";
-        lastName.style.border = 'none';
-        lastNameError.innerText = "";
-        confirmPassword.style.border = 'none';
+        lastName.classList.remove('error');
+        lastNameError.innerText = '';
     }
     if (firstName.value !== '') {
-        firstName.style.border = '1px solid green';
-        firstNameError.innerText = "";
-        lastName.style.border = '1px solid red'
-        lastNameError.innerText = 'Last Name is unavailabe.';
+        firstName.classList.add('success');
+        firstName.classList.remove('error');
+        firstNameError.innerText = '';
     }
-    if (lastName.value !== "") {
-        lastName.style.border = '1px solid green';
-        lastNameError.innerText = "";
-        email.style.border = '1px solid red';
-        emailError.innerText = "Email is unavailabe.";
+    if (firstName.value !== '' && lastName.value == '') {
+        firstName.classList.add('success');
+        firstName.classList.remove('error');
+        firstNameError.innerText = '';
+        lastName.classList.add('error');
+        lastName.classList.remove('success');
+        lastNameError.innerText = 'Last name is unavailable';
     }
-    if (email.value !== "") {
-        email.style.border = '1px solid green';
-        emailError.innerText = "";
-        password.style.border = '1px solid red';
+
+    // LAST NAME INPUT CONDITIONS
+    if (lastName.value == '') {
+        lastName.classList.remove('success');
+        email.classList.remove('error');
+        emailError.innerText = '';
+    }
+    if (lastName.value !== '') {
+        lastName.classList.add('success');
+        lastName.classList.remove('error');
+        lastNameError.innerText = '';
+    }
+    if (lastName.value !== '' && email.value == '') {
+        lastName.classList.add('success');
+        lastName.classList.remove('error');
+        lastNameError.innerText = '';
+        email.classList.add('error');
+        email.classList.remove('success');
+        emailError.innerText = 'Email is unavailabe.';
+    }
+
+    // EMAIL INPUT CONDITIONS
+    if (email.value == '') {
+        email.classList.remove('success');
+    }
+    if (email.value !== '') {
+        email.classList.add('success');
+        email.classList.remove('error');
+        emailError.innerHTML = '';
+    }
+    if (email.value !== '' && password.value == '') {
+        email.classList.add('success');
+        email.classList.remove('error');
+        emailError.innerHTML = '';
+        password.classList.add('error');
+        password.classList.remove('success');
         passwordError.innerText = 'Password must be at least 8 and not more than 16 characters';
     }
+
+    // PASSWORD INPUT CONDITIONS
+    if (password.value == '') {
+        password.classList.remove('success');
+    }
     if (password.value.length > 7 && password.value.length < 15 ) {
-        password.style.border = '1px solid green';
+        password.classList.add('success');
+        password.classList.remove('error');
         passwordError.innerText = '';
     }
     if (password.value.length >= 0 && password.value.length < 7 && password.value.length > 15) {
-        password.style.border = '1px solid red';
+        password.classList.add('error');
+        password.classList.remove('success');
     }
+
+    // CONFIRM PASSWORD INPUT CONDITIONS
     if (confirmPassword.value !== password.value) {
-        confirmPassword.style.border = '1px solid red';
+        confirmPassword.classList.add('error');
+        confirmPassword.classList.remove('success');
         confirmPasswordError.innerText = 'Password is incorrect';
     }
     if (confirmPassword.value == password.value) {
-        confirmPassword.style.border = 'none';
+        confirmPassword.classList.remove('error');
+        confirmPassword.classList.remove('success');
         confirmPasswordError.innerText = '';
     }
-}
+
+    // SIGN UP
+    if (!firstName.classList.contains('error') && !lastName.classList.contains('error') && !email.classList.contains('error') && !password.classList.contains('error') && !confirmPassword.classList.contains('error')) {
+        alert('Sign Up successful!');
+    }
+};
