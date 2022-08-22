@@ -56,7 +56,7 @@ function checkAll() {
     if (firstName.value == '' ) {
         firstName.classList.add('error');
         firstName.classList.remove('success');
-        firstNameError.innerText = "First Name is unavailabe.";
+        firstNameError.innerText = "Please input your First Name.";
         lastName.classList.remove('error');
         lastNameError.innerText = '';
     }
@@ -71,7 +71,7 @@ function checkAll() {
         firstNameError.innerText = '';
         lastName.classList.add('error');
         lastName.classList.remove('success');
-        lastNameError.innerText = 'Last name is unavailable';
+        lastNameError.innerText = 'Please input your Last Name.';
     }
 
     // LAST NAME INPUT CONDITIONS
@@ -91,7 +91,7 @@ function checkAll() {
         lastNameError.innerText = '';
         email.classList.add('error');
         email.classList.remove('success');
-        emailError.innerText = 'Email is unavailabe.';
+        emailError.innerText = 'Please input your Email.';
     }
 
     // EMAIL INPUT CONDITIONS
@@ -109,7 +109,7 @@ function checkAll() {
         emailError.innerHTML = '';
         password.classList.add('error');
         password.classList.remove('success');
-        passwordError.innerText = 'Password must be at least 8 and not more than 16 characters';
+        passwordError.innerText = 'Password length must be up to 8 characters and not more than 16 characters.';
     }
 
     // PASSWORD INPUT CONDITIONS
@@ -130,7 +130,7 @@ function checkAll() {
     if (confirmPassword.value !== password.value) {
         confirmPassword.classList.add('error');
         confirmPassword.classList.remove('success');
-        confirmPasswordError.innerText = 'Password is incorrect';
+        confirmPasswordError.innerText = 'Passwords do not match.';
     }
     if (confirmPassword.value == password.value) {
         confirmPassword.classList.remove('error');
